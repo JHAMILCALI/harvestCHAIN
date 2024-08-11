@@ -2,8 +2,58 @@ import React, { useState, useEffect } from 'react';
 import img1 from '../../assets/img/quinua2.jpg';
 import img2 from '../../assets/img/cacao.jpg';
 import img3 from '../../assets/img/arroz.jpg';
+import { ethers, parseEther, formatEther, Contract, BrowserProvider } from 'ethers';
+import ContractABI from './FundMe.json';
+
+const CONTRACT_ADDRESS = '0xb1b353a20cf0be3b1122a18cb4a00cf8bfd51b4b';
+
 
 const Comprador = () => {
+
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [fundedAmount, setFundedAmount] = useState(0);
+  const [userAddress, setUserAddress] = useState("0x2051EbdD86aCc8F81989B7CAd4B46dE1F9536355");
+
+  useEffect(() => {
+      const initEthers = async () => {
+          // Crea una instancia de un proveedor de Ethereum (MetaMask)
+          const provider = new BrowserProvider(window.ethereum);
+          setProvider(provider);
+
+          // Solicita acceso a la cuenta del usuario
+          await provider.send("eth_requestAccounts", []);
+
+          // Obtén el signer (la cuenta que firma las transacciones)
+          const signer = await provider.getSigner();
+          setSigner(signer);
+
+          // Crea una instancia del contrato
+          const contractInstance = new Contract(CONTRACT_ADDRESS, ContractABI, signer);
+          setContract(contractInstance);
+      };
+
+      initEthers();
+  }, []);
+
+  const getFundedAmount = async () => {
+      if (contract) {
+          const amount = await contract.getBalance();
+          setFundedAmount(formatEther(amount));
+      }
+  };
+
+  const handleFund = async () => {
+      if (contract && userAddress) {
+          const tx = await contract.fundWallet(userAddress, {
+              value: parseEther("0.0005"), // Monto que deseas enviar (0.1 ETH en este caso)
+          });
+          await tx.wait(); // Espera la confirmación de la transacción
+          alert('¡Fondos enviados!');
+      }
+  };
+  
   const [selectedItem, setSelectedItem] = useState(null);
 
   const cargar = (item) => {
@@ -25,7 +75,7 @@ const Comprador = () => {
 
     imgSeleccionada.src = item.querySelector("img").src;
     modeloSeleccionado.innerHTML = item.querySelector("p").innerHTML;
-    descripSeleccionada.innerHTML = "Descripción del modelo";
+    descripSeleccionada.innerHTML = "Descripción";
     precioSeleccionado.innerHTML = item.querySelector("span").innerHTML;
   };
 
@@ -69,22 +119,22 @@ const Comprador = () => {
               <div className="contenedor-foto">
                 <img src={img1} alt="NIKE AIR 97"/>
               </div>
-              <p className="descripcion">NIKE AIR 97</p>
-              <span className="precio">$ 1.300</span>
+              <p className="descripcion">QUINUA</p>
+              <span className="precio">ETH 0.05</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
                 <img src={img2} alt="NIKE RUNNING TERRA"/>
               </div>
-              <p className="descripcion">NIKE RUNNING TERRA</p>
-              <span className="precio">$ 1.800</span>
+              <p className="descripcion">CACAO</p>
+              <span className="precio">ETH 0.008</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
                 <img src={img3} alt="NIKE WINFLO 8"/>
               </div>
-              <p className="descripcion">NIKE WINFLO 8</p>
-              <span className="precio">$ 3.600</span>
+              <p className="descripcion">ARROZ</p>
+              <span className="precio">ETH 0.005</span>
             </div>
           </div>
         </div>
@@ -95,19 +145,19 @@ const Comprador = () => {
           <div className="info">
             <img src={img1} id="img" alt=""/>
             <h2 id="modelo">NIKE MODEL 1</h2>
-            <p id="descripcion">Descripción Modelo 1</p>
+            <p id="descripcion">Descripción 1</p>
             <span className="precio" id="precio">$ 130</span>
             <div className="fila">
               <div className="size">
-                <label htmlFor="">SIZE</label>
+                <label htmlFor="">CANTIDAD</label>
                 <select id="">
-                  <option value="">40</option>
-                  <option value="">42</option>
-                  <option value="">44</option>
-                  <option value="">46</option>
+                  <option value="">1</option>
+                  <option value="">2</option>
+                  <option value="">3</option>
+                  <option value="">4</option>
                 </select>
               </div>
-              <button>AGREGAR AL CARRITO</button>
+              <button onClick={handleFund}>Comprar</button>
             </div>
           </div>
         </div>
