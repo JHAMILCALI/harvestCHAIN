@@ -1,4 +1,4 @@
-const SimpleDAOABI = [
+[
     {
         "inputs": [],
         "stateMutability": "nonpayable",
@@ -147,6 +147,4 @@ const SimpleDAOABI = [
         "stateMutability": "nonpayable",
         "type": "function"
     }
-];
-
-export default SimpleDAOABI;
+]

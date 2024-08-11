@@ -1,6 +1,4 @@
-// contractABI.js
-
-export const contractABI = [
+[
     {
         "inputs": [],
         "name": "fund",
@@ -27,4 +25,4 @@ export const contractABI = [
         "stateMutability": "view",
         "type": "function"
     }
-];
+]

@@ -1,79 +1,74 @@
-import React, { useState } from 'react';
-import { BrowserProvider, Contract, parseEther } from 'ethers';
-import SimpleDAOABI from './SimpleDAOABI.js';
+import React, { useEffect, useState } from 'react';
+import { ethers, parseEther, formatEther, Contract, BrowserProvider } from 'ethers';
+import ContractABI from './FundMe.json';
 
-const SimpleDAO = () => {
-  const [amount, setAmount] = useState('');
-  const [recipient, setRecipient] = useState('');
-  const [message, setMessage] = useState('');
+const CONTRACT_ADDRESS = '0xb1b353a20cf0be3b1122a18cb4a00cf8bfd51b4b';
 
-  // Cargar el contrato
-  const loadContract = async () => {
-    const provider = new BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const contractAddress = '0xb68966ed40a3233ac23d14de6a219a1d8e1f0769338a4a8433d08bc0729ed002';  // Dirección del contrato desplegado
-    const contract = new Contract(contractAddress, SimpleDAOABI, signer);
-    return contract;
-  };
+const App = () => {
+    const [provider, setProvider] = useState(null);
+    const [signer, setSigner] = useState(null);
+    const [contract, setContract] = useState(null);
+    const [fundedAmount, setFundedAmount] = useState(0);
+    const [userAddress, setUserAddress] = useState("");
 
-  // Comprar acciones
-  const buyShares = async () => {
-    const contract = await loadContract();
-    try {
-      const tx = await contract.buyShares({ value: parseEther(amount) });
-      await tx.wait();
-      setMessage("Shares bought successfully!");
-    } catch (error) {
-      setMessage("Error buying shares: " + error.message);
-    }
-  };
+    useEffect(() => {
+        const initEthers = async () => {
+            // Crea una instancia de un proveedor de Ethereum (MetaMask)
+            const provider = new BrowserProvider(window.ethereum);
+            setProvider(provider);
 
-  // Proponer un gasto
-  const proposeSpending = async () => {
-    const contract = await loadContract();
-    try {
-      const tx = await contract.proposeSpending(parseEther(amount), recipient);
-      await tx.wait();
-      setMessage("Spending proposed successfully!");
-    } catch (error) {
-      setMessage("Error proposing spending: " + error.message);
-    }
-  };
+            // Solicita acceso a la cuenta del usuario
+            await provider.send("eth_requestAccounts", []);
 
-  return (
-    <div>
-      <h1>SimpleDAO Interaction</h1>
-      <div>
-        <h2>Buy Shares</h2>
-        <input 
-          type="text" 
-          value={amount} 
-          onChange={e => setAmount(e.target.value)} 
-          placeholder="Amount in Ether" 
-        />
-        <button onClick={buyShares}>Buy Shares</button>
-      </div>
+            // Obtén el signer (la cuenta que firma las transacciones)
+            const signer = await provider.getSigner();
+            setSigner(signer);
 
-      <div>
-        <h2>Propose Spending</h2>
-        <input 
-          type="text" 
-          value={amount} 
-          onChange={e => setAmount(e.target.value)} 
-          placeholder="Amount in Ether" 
-        />
-        <input 
-          type="text" 
-          value={recipient} 
-          onChange={e => setRecipient(e.target.value)} 
-          placeholder="Recipient Address" 
-        />
-        <button onClick={proposeSpending}>Propose Spending</button>
-      </div>
+            // Crea una instancia del contrato
+            const contractInstance = new Contract(CONTRACT_ADDRESS, ContractABI, signer);
+            setContract(contractInstance);
+        };
 
-      {message && <p>{message}</p>}
-    </div>
-  );
+        initEthers();
+    }, []);
+
+    const getFundedAmount = async () => {
+        if (contract) {
+            const amount = await contract.getBalance();
+            setFundedAmount(formatEther(amount));
+        }
+    };
+
+    const handleFund = async () => {
+        if (contract && userAddress) {
+            const tx = await contract.fundWallet(userAddress, {
+                value: parseEther("0.0005"), // Monto que deseas enviar (0.1 ETH en este caso)
+            });
+            await tx.wait(); // Espera la confirmación de la transacción
+            alert('¡Fondos enviados!');
+        }
+    };
+
+    return (
+        <div>
+            <h1>Contrato de Fondos</h1>
+
+            <div>
+                <button onClick={getFundedAmount}>Consultar Balance del Contrato</button>
+                <p>Balance: {fundedAmount} ETH</p>
+            </div>
+
+            <div>
+                <input
+                    type="text"
+                    placeholder="Ingresa la dirección del destinatario"
+                    value={userAddress}
+                    onChange={(e) => setUserAddress(e.target.value)}
+                />
+                <button onClick={handleFund}>Enviar Fondos</button>
+            </div>
+        </div>
+    );
 };
 
-export default SimpleDAO;
+export default App;
