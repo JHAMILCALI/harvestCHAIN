@@ -9,7 +9,7 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link to='/'>
+          <Link to='/index'>
             <img src={img1} width='50%' alt="Logo"/>
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,13 +18,16 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <Link className="nav-link" to='/'>Inicio</Link>
+                <Link className="nav-link" to='/index'>Inicio</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to='/productor'>Productor</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to='/distribuidor'>Distribuidor</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to='/comprador'>Comprador</Link>
               </li>
             </ul>
             <div className="navbar-nav">
