@@ -1,5 +1,6 @@
 import React from 'react';
 import{useState} from "react"
+ 
 export default function ConnectionButton() {
   const[buttonText, setButtonText] = useState('Conectar wallet')
   const [account, setAccount] = useState(null)
@@ -8,6 +9,7 @@ export default function ConnectionButton() {
         window.ethereum.request({method: 'eth_requestAccounts',})
         .then(result =>{
           setAccount(result[0])
+          setButtonText(null)
         })
         .catch(error =>{
           setButtonText(error.message)
