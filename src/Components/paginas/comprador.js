@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import img1 from '../../assets/img/1.png';
+import img1 from '../../assets/img/quinua2.jpg';
+import img2 from '../../assets/img/cacao.jpg';
+import img3 from '../../assets/img/arroz.jpg';
 
 const Comprador = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -72,14 +74,14 @@ const Comprador = () => {
             </div>
             <div className="item">
               <div className="contenedor-foto">
-                <img src={img1} alt="NIKE RUNNING TERRA"/>
+                <img src={img2} alt="NIKE RUNNING TERRA"/>
               </div>
               <p className="descripcion">NIKE RUNNING TERRA</p>
               <span className="precio">$ 1.800</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
-                <img src={img1} alt="NIKE WINFLO 8"/>
+                <img src={img3} alt="NIKE WINFLO 8"/>
               </div>
               <p className="descripcion">NIKE WINFLO 8</p>
               <span className="precio">$ 3.600</span>
