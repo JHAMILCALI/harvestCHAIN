@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/harvestCHAIN/static/css/main.9235cba4.css",
-    "main.js": "/harvestCHAIN/static/js/main.18e4ae1f.js",
+    "main.css": "/harvestCHAIN/static/css/main.c3afa2b7.css",
+    "main.js": "/harvestCHAIN/static/js/main.e8d8b687.js",
     "static/js/453.4432d401.chunk.js": "/harvestCHAIN/static/js/453.4432d401.chunk.js",
+    "static/media/1.png": "/harvestCHAIN/static/media/1.b5c478d277b9cd32eefa.png",
     "static/media/img1.png": "/harvestCHAIN/static/media/img1.e7af88f14fc333187c74.png",
     "static/media/logo.svg": "/harvestCHAIN/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/harvestCHAIN/index.html",
-    "main.9235cba4.css.map": "/harvestCHAIN/static/css/main.9235cba4.css.map",
-    "main.18e4ae1f.js.map": "/harvestCHAIN/static/js/main.18e4ae1f.js.map",
+    "main.c3afa2b7.css.map": "/harvestCHAIN/static/css/main.c3afa2b7.css.map",
+    "main.e8d8b687.js.map": "/harvestCHAIN/static/js/main.e8d8b687.js.map",
     "453.4432d401.chunk.js.map": "/harvestCHAIN/static/js/453.4432d401.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9235cba4.css",
-    "static/js/main.18e4ae1f.js"
+    "static/css/main.c3afa2b7.css",
+    "static/js/main.e8d8b687.js"
   ]
 }
