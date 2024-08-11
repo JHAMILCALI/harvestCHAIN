@@ -1,20 +1,23 @@
 {
   "files": {
-    "main.css": "/harvestCHAIN/static/css/main.c3afa2b7.css",
-    "main.js": "/harvestCHAIN/static/js/main.5d35256d.js",
+    "main.css": "/harvestCHAIN/static/css/main.338e6077.css",
+    "main.js": "/harvestCHAIN/static/js/main.732d7c6f.js",
     "static/js/453.4432d401.chunk.js": "/harvestCHAIN/static/js/453.4432d401.chunk.js",
+    "static/media/blo2.jpg": "/harvestCHAIN/static/media/blo2.9673231bbf88e808416b.jpg",
     "static/media/arroz.jpg": "/harvestCHAIN/static/media/arroz.753030c4ff1dfca91df4.jpg",
+    "static/media/blo1.png": "/harvestCHAIN/static/media/blo1.f4cbf5e12c91ee5c1dea.png",
     "static/media/quinua2.jpg": "/harvestCHAIN/static/media/quinua2.a6211491683e4404c01f.jpg",
+    "static/media/blo3.jpg": "/harvestCHAIN/static/media/blo3.8d31785636a2a2d18ff6.jpg",
     "static/media/img1.png": "/harvestCHAIN/static/media/img1.e7af88f14fc333187c74.png",
     "static/media/cacao.jpg": "/harvestCHAIN/static/media/cacao.1ca5ccad3ab252c71dc9.jpg",
     "static/media/logo.svg": "/harvestCHAIN/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/harvestCHAIN/index.html",
-    "main.c3afa2b7.css.map": "/harvestCHAIN/static/css/main.c3afa2b7.css.map",
-    "main.5d35256d.js.map": "/harvestCHAIN/static/js/main.5d35256d.js.map",
+    "main.338e6077.css.map": "/harvestCHAIN/static/css/main.338e6077.css.map",
+    "main.732d7c6f.js.map": "/harvestCHAIN/static/js/main.732d7c6f.js.map",
     "453.4432d401.chunk.js.map": "/harvestCHAIN/static/js/453.4432d401.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c3afa2b7.css",
-    "static/js/main.5d35256d.js"
+    "static/css/main.338e6077.css",
+    "static/js/main.732d7c6f.js"
   ]
 }
