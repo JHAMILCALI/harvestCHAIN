@@ -50,13 +50,13 @@ const Distribuidor = () => {
 
   return (
     <div>
-      <h2>Formulario Completo</h2>
-      <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
+      <h2>Complete Form</h2>
+      <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
         <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="fecha" className="form-label">Fecha</label>
+          <label htmlFor="fecha" className="form-label">Date</label>
           <input
             type="date"
             className="form-control"
@@ -68,7 +68,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="producto" className="form-label">Producto</label>
+          <label htmlFor="producto" className="form-label">Product</label>
           <select
             className="form-select"
             id="producto"
@@ -76,17 +76,17 @@ const Distribuidor = () => {
             value={formData.producto}
             onChange={handleChange}
           >
-            <option value="">Selecciona...</option>
-            <option value="chia">Chía</option>
-            <option value="quina">Quina</option>
-            <option value="amaranto">Amaranto</option>
-            <option value="soya">Soya</option>
-            {/* Agrega más opciones según sea necesario */}
+            <option value="">Select...</option>
+            <option value="chia">Chia</option>
+            <option value="quina">Quinoa</option>
+            <option value="amaranto">Amaranth</option>
+            <option value="soya">Soy</option>
+            {/* Add more options as needed */}
           </select>
         </div>
 
         <div className="mb-3">
-          <label htmlFor="codigoProductor" className="form-label">Código del Productor</label>
+          <label htmlFor="codigoProductor" className="form-label">Producer Code</label>
           <input
             type="text"
             className="form-control"
@@ -98,7 +98,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="codigoTransaccion" className="form-label">Código de la Transacción</label>
+          <label htmlFor="codigoTransaccion" className="form-label">Transaction Code</label>
           <input
             type="text"
             className="form-control"
@@ -110,7 +110,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="calidad" className="form-label">Calidad</label>
+          <label htmlFor="calidad" className="form-label">Quality</label>
           <select
             className="form-select"
             id="calidad"
@@ -118,27 +118,27 @@ const Distribuidor = () => {
             value={formData.calidad}
             onChange={handleChange}
           >
-            <option value="">Selecciona...</option>
-            <option value="organico">Orgánico</option>
-            <option value="convencional">Convencional</option>
+            <option value="">Select...</option>
+            <option value="organico">Organic</option>
+            <option value="convencional">Conventional</option>
           </select>
         </div>
 
         <div className="mb-3">
-          <label htmlFor="nombreProductor" className="form-label">Nombre del Productor</label>
+          <label htmlFor="nombreProductor" className="form-label">Producer's Name</label>
           <input
             type="text"
             className="form-control"
             id="nombreProductor"
             name="nombreProductor"
-            placeholder="Nombre, Apellido paterno, Apellido materno"
+            placeholder="First Name, Father's Last Name, Mother's Last Name"
             value={formData.nombreProductor}
             onChange={handleChange}
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="nombreDistribuidor" className="form-label">Nombre del Distribuidor</label>
+          <label htmlFor="nombreDistribuidor" className="form-label">Distributor's Name</label>
           <input
             type="text"
             className="form-control"
@@ -150,20 +150,20 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="comunidadProductor" className="form-label">Comunidad del Productor</label>
+          <label htmlFor="comunidadProductor" className="form-label">Producer's Community</label>
           <input
             type="text"
             className="form-control"
             id="comunidadProductor"
             name="comunidadProductor"
-            placeholder="Comunidad, Provincia, Departamento, País"
+            placeholder="Community, Province, Department, Country"
             value={formData.comunidadProductor}
             onChange={handleChange}
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="documentoIdentidad" className="form-label">Documento de Identidad</label>
+          <label htmlFor="documentoIdentidad" className="form-label">Identity Document</label>
           <input
             type="text"
             className="form-control"
@@ -175,7 +175,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="numeroParcela" className="form-label">Número de Parcela</label>
+          <label htmlFor="numeroParcela" className="form-label">Plot Number</label>
           <input
             type="text"
             className="form-control"
@@ -187,7 +187,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="cantidadKilos" className="form-label">Cantidad en Kilos</label>
+          <label htmlFor="cantidadKilos" className="form-label">Quantity in Kilos</label>
           <input
             type="number"
             className="form-control"
@@ -199,7 +199,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="bolsas" className="form-label">Bolsas</label>
+          <label htmlFor="bolsas" className="form-label">Bags</label>
           <input
             type="number"
             className="form-control"
@@ -211,7 +211,7 @@ const Distribuidor = () => {
         </div>
 
         <fieldset className="mb-3">
-          <legend className="form-label">Otras Certificaciones</legend>
+          <legend className="form-label">Other Certifications</legend>
           <div className="form-check">
             <input
               type="checkbox"
@@ -222,7 +222,7 @@ const Distribuidor = () => {
               checked={formData.otrasCertificaciones.includes('organica')}
               onChange={handleCheckboxChange}
             />
-            <label className="form-check-label" htmlFor="certificacionOrganica">Orgánica</label>
+            <label className="form-check-label" htmlFor="certificacionOrganica">Organic</label>
           </div>
           <div className="form-check">
             <input
@@ -251,7 +251,7 @@ const Distribuidor = () => {
         </fieldset>
 
         <div className="mb-3">
-          <label htmlFor="lote" className="form-label">Lote</label>
+          <label htmlFor="lote" className="form-label">Batch</label>
           <input
             type="text"
             className="form-control"
@@ -263,7 +263,7 @@ const Distribuidor = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="variedadProducto" className="form-label">Variedad de Producto</label>
+          <label htmlFor="variedadProducto" className="form-label">Product Variety</label>
           <input
             type="text"
             className="form-control"
@@ -284,11 +284,11 @@ const Distribuidor = () => {
               checked={formData.autorizacionTransaccion}
               onChange={handleChange}
             />
-            <label className="form-check-label" htmlFor="autorizacionTransaccion">Autorización de la Transacción</label>
+            <label className="form-check-label" htmlFor="autorizacionTransaccion">Transaction Authorization</label>
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">Enviar</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
         </div>
       </div>

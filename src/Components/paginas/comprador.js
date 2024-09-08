@@ -50,7 +50,7 @@ const Comprador = () => {
               value: parseEther("0.0005"), // Monto que deseas enviar (0.1 ETH en este caso)
           });
           await tx.wait(); // Espera la confirmación de la transacción
-          alert('¡Fondos enviados!');
+          alert('Funds sent!');
       }
   };
   
@@ -111,7 +111,7 @@ const Comprador = () => {
 
   return (
     <div>
-      <h1>TRANSACCIÓN DE COMPRADOR</h1>
+      <h1>BUYER TRANSACTION</h1>
       <section className="contenido">
         <div className="mostrador" id="mostrador">
           <div className="fila">
@@ -119,21 +119,21 @@ const Comprador = () => {
               <div className="contenedor-foto">
                 <img src={img1} alt="NIKE AIR 97"/>
               </div>
-              <p className="descripcion">QUINUA</p>
+              <p className="descripcion">QUINOA</p>
               <span className="precio">ETH 0.05</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
                 <img src={img2} alt="NIKE RUNNING TERRA"/>
               </div>
-              <p className="descripcion">CACAO</p>
+              <p className="descripcion">COCOA</p>
               <span className="precio">ETH 0.008</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
                 <img src={img3} alt="NIKE WINFLO 8"/>
               </div>
-              <p className="descripcion">ARROZ</p>
+              <p className="descripcion">RICE</p>
               <span className="precio">ETH 0.005</span>
             </div>
           </div>
@@ -149,7 +149,7 @@ const Comprador = () => {
             <span className="precio" id="precio">$ 130</span>
             <div className="fila">
               <div className="size">
-                <label htmlFor="">CANTIDAD</label>
+                <label htmlFor="">AMOUNT</label>
                 <select id="">
                   <option value="">1</option>
                   <option value="">2</option>
@@ -157,7 +157,7 @@ const Comprador = () => {
                   <option value="">4</option>
                 </select>
               </div>
-              <button onClick={handleFund}>Comprar</button>
+              <button onClick={handleFund}>Buy</button>
             </div>
           </div>
         </div>
