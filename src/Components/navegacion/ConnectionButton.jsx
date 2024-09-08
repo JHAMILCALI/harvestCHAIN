@@ -3,7 +3,7 @@ import walletIcon from '../../assets/img/login_usuario.png';
 import '../estilos/estilo.css';
 
 export default function ConnectionButton() {
-  const [buttonText, setButtonText] = useState('Conectar wallet');
+  const [buttonText, setButtonText] = useState('Connect Wallet');
   const [account, setAccount] = useState(null);
 
   const connectWallet = () => {
@@ -17,7 +17,7 @@ export default function ConnectionButton() {
           setButtonText(error.message);
         });
     } else {
-      setButtonText('Necesitas tener MetaMask');
+      setButtonText('MetaMask is required');
     }
   };
 
