@@ -63,9 +63,6 @@ const App = () => {
                     ))}
                 </div>
             </section>
-            <footer className="text-center mt-5 mb-3">
-                <p>&copy; 2024 harvestCHAIN. All rights reserved.</p>
-            </footer>
             </div>
         </div>
     );

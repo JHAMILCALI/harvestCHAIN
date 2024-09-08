@@ -4,57 +4,68 @@ import img2 from '../../assets/img/cacao.jpg';
 import img3 from '../../assets/img/arroz.jpg';
 import { ethers, parseEther, formatEther, Contract, BrowserProvider } from 'ethers';
 import ContractABI from './FundMe.json';
+import Alert from '../navegacion/alert'; // Asegúrate de importar el componente Alert
 
 const CONTRACT_ADDRESS = '0xb1b353a20cf0be3b1122a18cb4a00cf8bfd51b4b';
 
-
 const Comprador = () => {
-
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
   const [fundedAmount, setFundedAmount] = useState(0);
   const [userAddress, setUserAddress] = useState("0x2051EbdD86aCc8F81989B7CAd4B46dE1F9536355");
+  const [alert, setAlert] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-      const initEthers = async () => {
-          // Crea una instancia de un proveedor de Ethereum (MetaMask)
-          const provider = new BrowserProvider(window.ethereum);
-          setProvider(provider);
+    const initEthers = async () => {
+      const provider = new BrowserProvider(window.ethereum);
+      setProvider(provider);
+      await provider.send("eth_requestAccounts", []);
+      const signer = await provider.getSigner();
+      setSigner(signer);
+      const contractInstance = new Contract(CONTRACT_ADDRESS, ContractABI, signer);
+      setContract(contractInstance);
+    };
 
-          // Solicita acceso a la cuenta del usuario
-          await provider.send("eth_requestAccounts", []);
-
-          // Obtén el signer (la cuenta que firma las transacciones)
-          const signer = await provider.getSigner();
-          setSigner(signer);
-
-          // Crea una instancia del contrato
-          const contractInstance = new Contract(CONTRACT_ADDRESS, ContractABI, signer);
-          setContract(contractInstance);
-      };
-
-      initEthers();
+    initEthers();
   }, []);
 
   const getFundedAmount = async () => {
-      if (contract) {
-          const amount = await contract.getBalance();
-          setFundedAmount(formatEther(amount));
-      }
+    if (contract) {
+      const amount = await contract.getBalance();
+      setFundedAmount(formatEther(amount));
+    }
   };
 
   const handleFund = async () => {
-      if (contract && userAddress) {
-          const tx = await contract.fundWallet(userAddress, {
-              value: parseEther("0.0005"), // Monto que deseas enviar (0.1 ETH en este caso)
-          });
-          await tx.wait(); // Espera la confirmación de la transacción
-          alert('Funds sent!');
+    if (contract && userAddress) {
+      try {
+        const tx = await contract.fundWallet(userAddress, {
+          value: parseEther("0.0005"),
+        });
+        await tx.wait();
+        setAlert({ message: 'Funds sent successfully!', type: 'success' });
+
+        // Set timeout to close alert after 5 seconds
+        setTimeout(() => {
+          setAlert(null);
+        }, 5000);
+
+      } catch (error) {
+        setAlert({ message: 'Error sending funds.', type: 'error' });
+
+        // Set timeout to close alert after 5 seconds
+        setTimeout(() => {
+          setAlert(null);
+        }, 5000);
       }
+    }
   };
-  
-  const [selectedItem, setSelectedItem] = useState(null);
+
+  const closeAlert = () => {
+    setAlert(null);
+  };
 
   const cargar = (item) => {
     const mostrador = document.getElementById("mostrador");
@@ -113,25 +124,26 @@ const Comprador = () => {
     <div>
       <h1>BUYER TRANSACTION</h1>
       <section className="contenido">
+        {alert && <Alert message={alert.message} type={alert.type} onClose={closeAlert} />}
         <div className="mostrador" id="mostrador">
           <div className="fila">
             <div className="item">
               <div className="contenedor-foto">
-                <img src={img1} alt="NIKE AIR 97"/>
+                <img src={img1} alt="QUINOA"/>
               </div>
               <p className="descripcion">QUINOA</p>
               <span className="precio">ETH 0.05</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
-                <img src={img2} alt="NIKE RUNNING TERRA"/>
+                <img src={img2} alt="COCOA"/>
               </div>
               <p className="descripcion">COCOA</p>
               <span className="precio">ETH 0.008</span>
             </div>
             <div className="item">
               <div className="contenedor-foto">
-                <img src={img3} alt="NIKE WINFLO 8"/>
+                <img src={img3} alt="RICE"/>
               </div>
               <p className="descripcion">RICE</p>
               <span className="precio">ETH 0.005</span>
@@ -145,7 +157,7 @@ const Comprador = () => {
           <div className="info">
             <img src={img1} id="img" alt=""/>
             <h2 id="modelo">NIKE MODEL 1</h2>
-            <p id="descripcion">Descripción 1</p>
+            <p id="descripcion">Description 1</p>
             <span className="precio" id="precio">$ 130</span>
             <div className="fila">
               <div className="size">
