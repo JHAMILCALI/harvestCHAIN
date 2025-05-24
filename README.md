@@ -26,3 +26,11 @@
 
 ## 📜 Derechos reservados
 
+© 2025 Harvest Chain. Todos los derechos reservados.
+Este software es propiedad del equipo desarrollador de Harvest Chain.
+
+- Neddy Choque
+- Ivan Claros
+- Jhamil Mamani
+
+No está permitida su reproducción, distribución o modificación sin autorización expresa por escrito.
